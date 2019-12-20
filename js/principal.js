@@ -4,6 +4,9 @@ var titulo = document.querySelector(".titulo")
 
 titulo.textContent = "Aparecida Nutricionista"
 
+var pacientes = document.querySelectorAll(".paciente")
+console.log(pacientes)
+
 
 var paciente = document.querySelector("#primeiro-paciente")
 
