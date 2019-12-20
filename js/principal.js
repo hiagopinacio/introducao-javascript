@@ -18,6 +18,7 @@ for (var i = 0; i < pacientes.length; i++) {
         console.log("Peso inválido")
         tdPeso.textContent = "inválido"
         pesoEhValido = false
+        paciente.classList.add("paciente-invalido")
     }
 
 
@@ -29,6 +30,7 @@ for (var i = 0; i < pacientes.length; i++) {
         console.log("Altura inválida")
         tdAltura.textContent = "inválido"
         alturaEhValida = false
+        paciente.classList.add("paciente-invalido")
     }
 
 
