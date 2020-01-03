@@ -1,38 +1,51 @@
 var botaoFormulario = document.querySelector("#adicionar-paciente")
 
 botaoFormulario.addEventListener("click", function (event) {
+
     event.preventDefault()
 
     var formAdiciona = document.querySelector("#form-adiciona")
 
+    var paciente = obtemPacienteDoFormulario(formAdiciona)
+
+    var pacienteTr = montaTr(paciente)
+
     var tabela = document.querySelector("#tabela-pacientes")
 
-    var pacienteTr = document.createElement("tr")
-    pacienteTr.classList.add("paciente")
     tabela.appendChild(pacienteTr)
-
-    var nomeTd = document.createElement("td")
-    nomeTd.textContent = formAdiciona.nome.value
-    nomeTd.classList.add("info-nome")
-    pacienteTr.appendChild(nomeTd)
-
-    var pesoTd = document.createElement("td")
-    pesoTd.textContent = formAdiciona.peso.value
-    pesoTd.classList.add("info-peso")
-    pacienteTr.appendChild(pesoTd)
-
-    var alturaTd = document.createElement("td")
-    alturaTd.textContent = formAdiciona.altura.value
-    alturaTd.classList.add("info-altura")
-    pacienteTr.appendChild(alturaTd)
-
-    var gorduraTd = document.createElement("td")
-    gorduraTd.textContent = formAdiciona.gordura.value
-    gorduraTd.classList.add("info-gordura")
-    pacienteTr.appendChild(gorduraTd)
-
-    var imcTd = document.createElement("td")
-    imcTd.textContent = calculaIMC(formAdiciona.peso.value, formAdiciona.altura.value)
-    imcTd.classList.add("info-imc")
-    pacienteTr.appendChild(imcTd)
 })
+
+
+function obtemPacienteDoFormulario(form) {
+
+    var paciente = {
+        nome: form.nome.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.gordura.value,
+        imc: calculaIMC(form.peso.value, form.altura.value)
+    }
+
+    return paciente
+}
+
+function montaTd(dado, classeCSS) {
+
+    var td = document.createElement("td")
+    td.textContent = dado
+    td.classList.add(classeCSS)
+
+    return td
+}
+
+function montaTr(paciente) {
+    var tr = document.createElement("tr")
+    tr.classList.add("paciente")
+    tr.appendChild(montaTd(paciente.nome, "info-nome"))
+    tr.appendChild(montaTd(paciente.peso, "info-peso"))
+    tr.appendChild(montaTd(paciente.altura, "info-altura"))
+    tr.appendChild(montaTd(paciente.gordura, "info-gordura"))
+    tr.appendChild(montaTd(paciente.imc, "info-imc"))
+
+    return tr
+}
