@@ -31,4 +31,8 @@ botaoFormulario.addEventListener("click", function (event) {
     gorduraTd.classList.add("info-gordura")
     pacienteTr.appendChild(gorduraTd)
 
+    var imcTd = document.createElement("td")
+    imcTd.textContent = calculaIMC(formAdiciona.peso.value, formAdiciona.altura.value)
+    imcTd.classList.add("info-imc")
+    pacienteTr.appendChild(imcTd)
 })
