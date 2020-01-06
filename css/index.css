@@ -139,7 +139,7 @@ button[disabled=disabled], button:disabled {
 #lista-erros li{
 	background-color: lightcoral;
 	color: red;
-	border: 1px solid whitesmoke;
+	border: 1px solid white;
 	height: 2em;
 	padding: 0.5em;
 }
