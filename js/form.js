@@ -1,5 +1,6 @@
 var botaoFormulario = document.querySelector("#adicionar-paciente")
 
+
 botaoFormulario.addEventListener("click", function (event) {
 
     event.preventDefault()
@@ -8,6 +9,13 @@ botaoFormulario.addEventListener("click", function (event) {
 
     var paciente = obtemPacienteDoFormulario(formAdiciona)
 
+    var erros = validaForm(paciente)
+
+    if (erros.length > 0) {
+        exibeListaDeErros(erros)
+        return
+    }
+
     var pacienteTr = montaTr(paciente)
 
     var tabela = document.querySelector("#tabela-pacientes")
@@ -15,6 +23,9 @@ botaoFormulario.addEventListener("click", function (event) {
     tabela.appendChild(pacienteTr)
 
     formAdiciona.reset()
+
+    var listaErros = document.querySelector("#lista-erros")
+    listaErros.innerHTML = ""
 })
 
 
@@ -50,4 +61,33 @@ function montaTr(paciente) {
     tr.appendChild(montaTd(paciente.imc, "info-imc"))
 
     return tr
+}
+
+function validaForm(paciente) {
+    var erros = []
+
+    if (paciente.nome.length == 0) erros.push("O nome não pode estar em branco.")
+
+    if (paciente.peso.length == 0) erros.push("O peso não pode estar em branco.")
+
+    if (paciente.altura.length == 0) erros.push("A altura não pode estar e branco.")
+
+    if (paciente.gordura.length == 0) erros.push("A gordura corporal não pode estar em branco.")
+
+    if (!validaPeso(paciente.peso)) erros.push("Valor de peso inválido.")
+
+    if (!validaAltura(paciente.altura)) erros.push("Valor de altura inválido.")
+
+    return erros
+}
+
+function exibeListaDeErros(erros) {
+    var ul = document.querySelector("#lista-erros");
+    ul.innerHTML = "";
+
+    erros.forEach(function (erro) {
+        var li = document.createElement("li")
+        li.textContent = erro
+        ul.appendChild(li)
+    })
 }
