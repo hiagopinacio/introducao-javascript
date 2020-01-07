@@ -16,11 +16,7 @@ botaoFormulario.addEventListener("click", function (event) {
         return
     }
 
-    var pacienteTr = montaTr(paciente)
-
-    var tabela = document.querySelector("#tabela-pacientes")
-
-    tabela.appendChild(pacienteTr)
+    adicionaPaciente(paciente)
 
     formAdiciona.reset()
 
@@ -90,4 +86,12 @@ function exibeListaDeErros(erros) {
         li.textContent = erro
         ul.appendChild(li)
     })
+}
+
+function adicionaPaciente(paciente) {
+    var pacienteTr = montaTr(paciente)
+
+    var tabela = document.querySelector("#tabela-pacientes")
+
+    tabela.appendChild(pacienteTr)
 }
