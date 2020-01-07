@@ -3,14 +3,18 @@ var campoFiltro = document.querySelector("#filtrar-tabela")
 campoFiltro.addEventListener("input", function () {
 
     var pacientes = document.querySelectorAll(".paciente")
+    var filtro = this.value
 
-    if (this.value.length > 0) {
+    if (filtro.length > 0) {
 
         pacientes.forEach(function (paciente) {
 
-            nome = paciente.querySelector(".info-nome")
+            var tdnome = paciente.querySelector(".info-nome")
 
-            if (campoFiltro.value == nome.textContent) {
+            // cria expressão regular com valor a ser buscado:
+            var expressaoRegular = new RegExp(filtro, "i") // 'i' = case-insensitive
+
+            if (expressaoRegular.test(tdnome.textContent)) {
                 paciente.classList.remove("invisivel")
             } else {
                 paciente.classList.add("invisivel")
