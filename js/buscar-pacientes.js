@@ -10,7 +10,13 @@ btnBuscarPacientes.addEventListener("click", function () {
 
         var resposta = xhr.responseText //string com resultado da requisição
         var pacientesImportados = JSON.parse(resposta)
+
         console.log(pacientesImportados); //transforma a string recebida em um array com objetos js
+
+        pacientesImportados.forEach(function (paciente) {
+
+            adicionaPaciente(paciente)
+        })
 
     })
     xhr.send()
