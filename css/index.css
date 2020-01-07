@@ -155,3 +155,7 @@ button:disabled {
 .campo-filtro {
 	margin-bottom: 10px;
 }
+
+.invisivel {
+	display: none;
+}
